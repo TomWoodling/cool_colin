@@ -1,5 +1,10 @@
 # Cool Colin Crosses the Causeway - Proof of Concept (POC)
 
+## Resources Used
+
+Cool Colin model created using https://www.meshy.ai - model available at https://skfb.ly/pwrqD - animations from https://anything.world/animate-anything.
+
+
 ## About This POC
 
 This repository contains the Proof of Concept (POC) for "Cool Colin Crosses the Causeway," a 3D exploration and discovery game starring Cool Colin, an inquisitive dog.
