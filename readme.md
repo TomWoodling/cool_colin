@@ -4,6 +4,12 @@
 
 Cool Colin model created using https://www.meshy.ai - model available at https://skfb.ly/pwrqD - animations from https://anything.world/animate-anything.
 
+## License
+
+- Code in this repository is licensed under the MIT License.
+- 3D model assets generated with [Meshy.AI](https://www.meshy.ai) are licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
+  - Attribution: "3D models generated with Meshy.AI"
+
 
 ## About This POC
 
