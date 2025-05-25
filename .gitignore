@@ -11,9 +11,9 @@ export_credentials.cfg
 *.translation
 
 #Project-specific ignore
-.EXE/
-.movies/
-.backupstuff/
+EXE/
+movies/
+backupstuff/
 
 # Mono-specific ignores
 .mono/
