@@ -1,0 +1,97 @@
+[gd_scene load_steps=12 format=3 uid="uid://1phqwivutqjo"]
+
+[ext_resource type="Script" path="res://scripts/discoverable.gd" id="1_3fafv"]
+[ext_resource type="Material" uid="uid://crr0pop7c4xx7" path="res://partmat.tres" id="1_wld4b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqaxa"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_mtnvi"]
+material = SubResource("StandardMaterial3D_aqaxa")
+inner_radius = 0.25
+outer_radius = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_80qpe"]
+radius = 4.0
+
+[sub_resource type="Animation" id="Animation_ch87m"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+
+[sub_resource type="Animation" id="Animation_urfi6"]
+resource_name = "reveal_effect"
+length = 0.5
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.5, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_oydm8"]
+resource_name = "spin"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107, 0.5, 1, -0.5, -0.5, 0.5, -0.5, 1, 1, 3.09086e-08, -0.707107, 0.707107, 3.09086e-08)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fj5yq"]
+_data = {
+"RESET": SubResource("Animation_ch87m"),
+"reveal_effect": SubResource("Animation_urfi6"),
+"spin": SubResource("Animation_oydm8")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ymqtr"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+gravity = Vector3(0, 2, 0)
+hue_variation_min = -0.2
+hue_variation_max = 0.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_7ecly"]
+material = ExtResource("1_wld4b")
+size = Vector2(0.1, 0.1)
+
+[node name="Discoverable" type="Area3D"]
+script = ExtResource("1_3fafv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.5, 0)
+mesh = SubResource("TorusMesh_mtnvi")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("SphereShape3D_80qpe")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fj5yq")
+}
+autoplay = "spin"
+
+[node name="InteractionParticles" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 16
+lifetime = 1.2
+explosiveness = 0.09
+randomness = 0.5
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_ymqtr")
+draw_pass_1 = SubResource("QuadMesh_7ecly")

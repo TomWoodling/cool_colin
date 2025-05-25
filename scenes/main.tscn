@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnvd6g05yvu5y"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_cjikr"]
+[ext_resource type="PackedScene" uid="uid://n25ifc5302bs" path="res://scenes/cool_colin.tscn" id="1_wpmxt"]
+[ext_resource type="PackedScene" uid="uid://d3b6gmpfjgjax" path="res://scenes/ui/poc_ui.tscn" id="3_viniq"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_cjikr")
+
+[node name="CoolColin" parent="." instance=ExtResource("1_wpmxt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.33275, 0)
+
+[node name="POC_UI" parent="." instance=ExtResource("3_viniq")]

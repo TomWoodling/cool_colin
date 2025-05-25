@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://buapf82erat1h"]
+
+[ext_resource type="PackedScene" uid="uid://n25ifc5302bs" path="res://scenes/cool_colin.tscn" id="1_lpc4f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjl73"]
+albedo_color = Color(0, 0.776471, 0.109804, 1)
+
+[sub_resource type="Environment" id="Environment_unldb"]
+background_mode = 1
+background_color = Color(0, 0, 0.756863, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4ulit"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0aprl"]
+points = PackedVector3Array(-5, -0.5, -5, -5, 0.5, -5, 5, -0.5, -5, -5, -0.5, 5, -5, 0.5, 5, 5, 0.5, -5, 5, -0.5, 5, 5, 0.5, 5)
+
+[node name="basiclevel" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(50, 0.1, 50)
+material = SubResource("StandardMaterial3D_bjl73")
+
+[node name="cool_colin" parent="." instance=ExtResource("1_lpc4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.821987, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_unldb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.880038, 0.474902, 0, -0.474902, 0.880038, 0, 12.6268, 21.0374)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.2907)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.994174, -0.107791, 0, 0.107791, 0.994174, 0, 0, 1.22781)
+mesh = SubResource("BoxMesh_4ulit")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.994174, -0.107791, 0, 0.107791, 0.994174, 0, 0, 1.22781)
+shape = SubResource("ConvexPolygonShape3D_0aprl")

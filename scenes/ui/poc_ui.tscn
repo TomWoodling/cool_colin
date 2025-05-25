@@ -1,0 +1,129 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3b6gmpfjgjax"]
+
+[ext_resource type="Script" path="res://scripts/POC_UI_Manager.gd" id="1_0x4kp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1"]
+font_size = 18
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2"]
+font_size = 32
+font_color = Color(1, 1, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1"]
+bg_color = Color(0, 0, 0, 0.8)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_3"]
+font_size = 48
+font_color = Color(0, 1, 0, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4"]
+font_size = 20
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="POC_UI" type="CanvasLayer"]
+script = ExtResource("1_0x4kp")
+
+[node name="DiscoveryCounter" type="Label" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -60.0
+offset_right = 250.0
+offset_bottom = -20.0
+text = "Discoveries: 0/16"
+label_settings = SubResource("LabelSettings_1")
+
+[node name="CountdownLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -50.0
+offset_right = 150.0
+offset_bottom = 50.0
+text = "Loading Final Zone...
+5"
+label_settings = SubResource("LabelSettings_2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CompletionPanel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = -100.0
+offset_bottom = -100.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CompletionPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="CompletionPanel/VBoxContainer"]
+layout_mode = 2
+text = "POC COMPLETED!"
+label_settings = SubResource("LabelSettings_3")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CompletionPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="DetailsLabel" type="Label" parent="CompletionPanel/VBoxContainer"]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Colin's Journey Complete!
+
+Final Outcome: SIT_THINK
+Discoveries Found: 16/16
+
+Categories Completed:
+• ARTIFACTS
+• MEMORY
+• LANDSCAPES
+• NATURAL_PHENOMENA
+
+Colin sits thoughtfully with his tennis ball,
+reflecting on memories and artifacts found."
+label_settings = SubResource("LabelSettings_4")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StaminaBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(200, 0)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -48.0
+offset_bottom = -21.0
+grow_horizontal = 0
+grow_vertical = 0

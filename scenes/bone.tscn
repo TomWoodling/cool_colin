@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bee5qrd0pfjrw"]
+
+[ext_resource type="PackedScene" uid="uid://c0ytkxjipd5y2" path="res://assets/models/bone/boney.glb" id="1_l3jts"]
+
+[node name="Bone" type="Area3D"]
+
+[node name="boney" parent="." instance=ExtResource("1_l3jts")]
+
+[editable path="boney"]

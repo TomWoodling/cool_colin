@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwu270k163pes"]
+
+[ext_resource type="PackedScene" uid="uid://jg3xpdc0rr8o" path="res://assets/models/ball/bally.glb" id="1_xbkyh"]
+
+[node name="Ball" type="Area3D"]
+
+[node name="bally" parent="." instance=ExtResource("1_xbkyh")]

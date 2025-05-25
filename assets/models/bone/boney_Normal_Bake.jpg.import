@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://c4wfuqaggex8k"
+path.s3tc="res://.godot/imported/boney_Normal_Bake.jpg-fa5f99f263aedf58aedc7582bb763b9b.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "d9ac73b035b88895ee6eece888a59e4a"
+}
+
+[deps]
+
+source_file="res://assets/models/bone/boney_Normal_Bake.jpg"
+dest_files=["res://.godot/imported/boney_Normal_Bake.jpg-fa5f99f263aedf58aedc7582bb763b9b.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://assets/models/bone/boney_Normal_Bake.jpg"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

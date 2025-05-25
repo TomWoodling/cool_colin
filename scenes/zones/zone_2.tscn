@@ -1,0 +1,127 @@
+[gd_scene load_steps=13 format=3 uid="uid://idryye8iqunh"]
+
+[ext_resource type="Script" path="res://scripts/zone_exit.gd" id="1_ad7xd"]
+[ext_resource type="Material" uid="uid://crr0pop7c4xx7" path="res://partmat.tres" id="1_vrt0h"]
+[ext_resource type="PackedScene" uid="uid://xp75ctowx6sy" path="res://assets/models/simple_tree/simple_tree.blend" id="2_rbhil"]
+[ext_resource type="PackedScene" uid="uid://dboch8d4x0p76" path="res://assets/models/arch/arch.glb" id="2_xkkkg"]
+[ext_resource type="PackedScene" uid="uid://c1p7oi7mtrwt5" path="res://assets/models/simple_hedge/simple_hedge.blend" id="4_ia5wt"]
+[ext_resource type="PackedScene" uid="uid://1phqwivutqjo" path="res://scenes/discoverable.tscn" id="5_amq4l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tvgwp"]
+albedo_color = Color(0.870588, 1, 0.498039, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7oddj"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 1, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_w0vkv"]
+material = ExtResource("1_vrt0h")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_geyex"]
+radius = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vnpqt"]
+radius = 1.0
+
+[sub_resource type="Environment" id="Environment_0pf5h"]
+background_mode = 1
+background_color = Color(0.549678, 0.695593, 0.99729, 1)
+
+[node name="Zone2" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 5)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." groups=["sand_terrain"]]
+use_collision = true
+size = Vector3(50, 0.1, 50)
+material = SubResource("StandardMaterial3D_tvgwp")
+
+[node name="ExitZone1" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23.0848)
+script = ExtResource("1_ad7xd")
+target_zone_scene_path = "res://scenes/zones/zone_1.tscn"
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="ExitZone1"]
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_7oddj")
+draw_pass_1 = SubResource("QuadMesh_w0vkv")
+
+[node name="arch" parent="ExitZone1" instance=ExtResource("2_xkkkg")]
+transform = Transform3D(4.76331, 0.16597, 1.51108, 0, 4.97011, -0.545896, -1.52017, 0.520054, 4.73483, 0, 2.46006, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExitZone1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.661)
+shape = SubResource("SphereShape3D_geyex")
+
+[node name="ExitZone4" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 22.4578)
+script = ExtResource("1_ad7xd")
+target_zone_scene_path = "res://scenes/zones/zone_4.tscn"
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="ExitZone4"]
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_7oddj")
+draw_pass_1 = SubResource("QuadMesh_w0vkv")
+
+[node name="arch" parent="ExitZone4" instance=ExtResource("2_xkkkg")]
+transform = Transform3D(4.76331, 0.16597, 1.51108, 0, 4.97011, -0.545896, -1.52017, 0.520054, 4.73483, 0, 2.46006, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExitZone4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.661)
+shape = SubResource("SphereShape3D_vnpqt")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0pf5h")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20, 0)
+
+[node name="Trees" type="Node3D" parent="."]
+
+[node name="simple_tree" parent="Trees" instance=ExtResource("2_rbhil")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 7.54445)
+
+[node name="simple_tree2" parent="Trees" instance=ExtResource("2_rbhil")]
+transform = Transform3D(-7.43094e-08, 0, 1.7, 0, 1.7, 0, -1.7, 0, -7.43094e-08, 14.9873, 0, 0)
+
+[node name="simple_tree3" parent="Trees" instance=ExtResource("2_rbhil")]
+transform = Transform3D(-1.5, 0, -1.31134e-07, 0, 1.5, 0, 1.31134e-07, 0, -1.5, -9.76344, 0, -3.66162)
+
+[node name="simple_tree4" parent="Trees" instance=ExtResource("2_rbhil")]
+transform = Transform3D(-1.00536e-07, 0, -2.3, 0, 2.3, 0, 2.3, 0, -1.00536e-07, 0, 0, -12.6876)
+
+[node name="simple_hedge" parent="." instance=ExtResource("4_ia5wt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1077, 0.0500011, 14.5561)
+
+[node name="simple_hedge2" parent="." instance=ExtResource("4_ia5wt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.3357, 0.0500021, 16.2385)
+
+[node name="simple_hedge3" parent="." instance=ExtResource("4_ia5wt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6229, 0.0500031, -16.0847)
+
+[node name="discoverables" type="Node3D" parent="."]
+
+[node name="Discoverable2" parent="discoverables" instance=ExtResource("5_amq4l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.3593, 0, -15.0589)
+discovery_id = "disc_z2_art1"
+initially_hidden = true
+
+[node name="Discoverable" parent="discoverables" instance=ExtResource("5_amq4l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.046, 0, 12.519)
+discovery_id = "disc_z2_mem1"
+
+[node name="Discoverable3" parent="discoverables" instance=ExtResource("5_amq4l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.7467, 0, 14.8926)
+discovery_id = "disc_z2_lnd1"
+
+[node name="Discoverable4" parent="discoverables" instance=ExtResource("5_amq4l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6588, 0, -13.4077)
+discovery_id = "disc_z2_nat1"
+
+[node name="PlayerSpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

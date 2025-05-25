@@ -1,0 +1,69 @@
+[gd_scene load_steps=12 format=3 uid="uid://7ntsmo5fiyge"]
+
+[ext_resource type="PackedScene" uid="uid://xp75ctowx6sy" path="res://assets/models/simple_tree/simple_tree.blend" id="1_vnk0k"]
+[ext_resource type="PackedScene" uid="uid://dwu270k163pes" path="res://scenes/ball.tscn" id="2_86g8n"]
+[ext_resource type="PackedScene" uid="uid://c1p7oi7mtrwt5" path="res://assets/models/simple_hedge/simple_hedge.blend" id="2_tx301"]
+[ext_resource type="PackedScene" uid="uid://bee5qrd0pfjrw" path="res://scenes/bone.tscn" id="3_miiiv"]
+[ext_resource type="Script" path="res://scripts/final_dig_spot.gd" id="6_v33y3"]
+[ext_resource type="Material" uid="uid://crr0pop7c4xx7" path="res://partmat.tres" id="7_f03ub"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nhofu"]
+albedo_color = Color(1, 0, 0.337255, 1)
+
+[sub_resource type="Environment" id="Environment_04nk4"]
+background_mode = 1
+background_color = Color(0.549678, 0.695593, 0.99729, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7uofb"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 1, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_rj62l"]
+material = ExtResource("7_f03ub")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_eitwb"]
+radius = 2.0
+
+[node name="Zone5" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." groups=["sand_terrain"]]
+use_collision = true
+size = Vector3(50, 0.1, 50)
+material = SubResource("StandardMaterial3D_nhofu")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_04nk4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20, 0)
+
+[node name="Trees" type="Node3D" parent="."]
+
+[node name="simple_tree" parent="Trees" instance=ExtResource("1_vnk0k")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 12.9129)
+
+[node name="simple_hedge3" parent="." instance=ExtResource("2_tx301")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.6229, 0.0500031, -16.2338)
+
+[node name="PlayerSpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.61765, 0)
+
+[node name="FinalDigSpot" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9225, 0, 0)
+script = ExtResource("6_v33y3")
+tennis_ball_prefab = ExtResource("2_86g8n")
+big_bone_prefab = ExtResource("3_miiiv")
+
+[node name="DigParticles" type="GPUParticles3D" parent="FinalDigSpot"]
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_7uofb")
+draw_pass_1 = SubResource("QuadMesh_rj62l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FinalDigSpot"]
+shape = SubResource("SphereShape3D_eitwb")

@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://2lf574fyf0dp"]
+
+[ext_resource type="StyleBox" uid="uid://be0munyce2r37" path="res://resources/theme/new_style_box_flat.tres" id="1_4c3u5"]
+[ext_resource type="FontFile" uid="uid://dx4jfyyhh1d7y" path="res://assets/Fonts/BPtypewrite.otf" id="2_cwe54"]
+
+[resource]
+default_font = ExtResource("2_cwe54")
+default_font_size = 18
+Button/font_sizes/font_size = 14
+Button/fonts/font = ExtResource("2_cwe54")
+Label/styles/normal = ExtResource("1_4c3u5")
+MarginContainer/styles/MarCoBox = ExtResource("1_4c3u5")
+Panel/styles/panel = ExtResource("1_4c3u5")
+VBoxContainer/constants/separation = 4
+VBoxContainer/styles/stylevbox = ExtResource("1_4c3u5")

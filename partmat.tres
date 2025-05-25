@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://crr0pop7c4xx7"]
+
+[ext_resource type="Texture2D" uid="uid://tp51lqgk3pkj" path="res://assets/textures/particle.png" id="1_wru1q"]
+
+[resource]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+disable_fog = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_wru1q")
+billboard_mode = 2
